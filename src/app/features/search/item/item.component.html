@@ -1,0 +1,47 @@
+<div class="modalwrap">
+    <div class="modal-inner">
+        <header>
+            <h1>{{movie.title}}</h1>
+            <div class="close-action">
+                <button mat-icon-button color="primary" (click)="this.closeEditor()"><mat-icon>close</mat-icon></button>
+            </div>
+        </header>
+        <main>
+            <div class="poster">
+                <img *ngIf="movie.poster_path" src="https://image.tmdb.org/t/p/w300{{movie.poster_path}}" alt="">
+                <span *ngIf="!movie.poster_path">No image available</span>
+            </div>
+            <div class="movie-data">
+                <p>{{movie.overview}}</p>
+                <ul>
+                    <li><strong>Budget:</strong> {{movie.budget | number}}</li>
+                    <li><strong>Release date:</strong> {{movie.release_date | date}}</li>
+                    <li><strong>Revenue:</strong> {{movie.revenue | number}}</li>
+                    <li><strong>Languages:</strong>
+                        <ul>
+                            <li *ngFor="let lang of movie.spoken_languages"><span>{{lang.name}}</span></li>
+                        </ul>
+                    <li><strong>Vote average</strong> {{movie.vote_average}}</li>
+                    <li><strong>Vote count</strong> {{movie.vote_count}}</li>
+                </ul>
+                <form #castVoteForm="ngForm" (submit)="castVote($event)">
+                    <mat-form-field>
+                        <mat-label>Cast your rating</mat-label>
+                        <mat-select name="myRating" matNativeControl [(ngModel)]="myRating" required>
+                            <option label="--select rating --"></option>
+                            <mat-option *ngFor="let rating of ratingOptions" [value]="rating.value">
+                                {{rating.label}}
+                            </mat-option>
+                        </mat-select>
+                        
+                    </mat-form-field>
+
+                    <button mat-button color="primary" [disabled]="castVoteForm.invalid">
+                        Submit rating
+                    </button>
+                </form>                    
+            </div>
+        </main>
+    </div>
+</div>
+

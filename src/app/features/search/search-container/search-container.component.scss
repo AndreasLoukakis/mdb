@@ -1,0 +1,44 @@
+.search-container {
+
+    mat-form-field {
+        width: 40em;
+        margin: 2em 0;
+    }
+
+    padding: 2em;
+    text-align: center;
+
+    h1 {
+        font-weight: normal;
+        font-size: 1.8em;
+
+        small {
+            font-size: 0.7em;
+            display: block;;
+        }
+    }
+
+    .search-results {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .results-wrap {
+        position: relative;
+        min-height: 200px;
+        height: 100%;
+    }
+
+    .loader-wrap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 56px;
+        right: 0;
+        background: rgba(0, 0, 0, 0.15);
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

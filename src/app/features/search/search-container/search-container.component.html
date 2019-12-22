@@ -1,0 +1,64 @@
+<div class="search-container">
+    <h1>Search through the MoviesDB
+        <small>for your favorite movies</small>
+    </h1>
+    <div class="search-form">
+      
+      <form #searchForm="ngForm" (submit)="search($event, 1)">
+          <mat-form-field>
+              <input #searchStr="ngModel" name="searchString" matInput 
+                  placeholder="Search for movie keywords"
+                  [(ngModel)]="searchString"
+                  minlength="3"
+                  required
+                  appSearchAllowedChars>
+              <mat-error *ngIf="searchStr.errors && searchStr.errors.minlength && !searchStr.errors?.validSearchString">
+              Your search must have at least {{searchStr.errors.minlength.requiredLength}} characters, you have {{searchStr.errors.minlength.actualLength}}
+              </mat-error>
+              <mat-error *ngIf="searchStr.errors && searchStr.errors?.validSearchString">
+              Your search can contain latin characters and numbers only
+              </mat-error>
+          </mat-form-field>
+          <button mat-button color="primary" [disabled]="searchForm.invalid">
+              <mat-icon>search</mat-icon> Search
+          </button>
+      </form>
+    </div>
+    <div class="search-results">
+        <h1 *ngIf="currentSearchString">Showing results for "{{currentSearchString}}"</h1>
+        <div class="mat-elevation-z8 results-wrap" *ngIf="tableData">
+          <div class="loader-wrap"
+              *ngIf="searching">
+            <mat-spinner></mat-spinner>
+          </div>
+          <table mat-table [dataSource]="tableData" style="width: 100%;">
+        
+            <ng-container matColumnDef="poster_path">
+              <th mat-header-cell *matHeaderCellDef> Poster </th>
+              <td mat-cell *matCellDef="let element">
+                <img *ngIf="element.poster_path" src="https://image.tmdb.org/t/p/w92{{element.poster_path}}" alt="{{element.title}}">
+                <span *ngIf="!element.poster_path">No Image</span>
+              </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="title">
+              <th mat-header-cell *matHeaderCellDef> Title </th>
+              <td mat-cell *matCellDef="let element"><a [routerLink]="['/search/' + element.id]"> {{element.title}} </a></td>
+            </ng-container>
+        
+            <ng-container matColumnDef="vote_average">
+              <th mat-header-cell *matHeaderCellDef> Vote average </th>
+              <td mat-cell *matCellDef="let element"> {{element.vote_average}} </td>
+            </ng-container>
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        
+          <mat-paginator [length]="resultsLength" [pageSize]="20" showFirstLastButtons></mat-paginator>
+        </div>
+    </div>
+</div>
+<div class="modal-wrap">
+  <router-outlet></router-outlet>
+</div>
