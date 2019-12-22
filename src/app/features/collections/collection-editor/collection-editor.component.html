@@ -1,0 +1,34 @@
+<div class="modalwrap">
+    <div class="modal-inner">
+        <form #createCollection="ngForm" (submit)="onSubmit($event)">
+            <header>
+                <h1>Create new collection</h1>
+                <div class="close-action">
+                    <button mat-icon-button color="primary" (click)="this.closeEditor()"><mat-icon>close</mat-icon></button>
+                </div>
+            </header>
+            <main>
+                <div class="movie-data">
+                    <mat-form-field class="">
+                        <input name="title" [(ngModel)]="title" matInput placeholder="List name" value="" required>
+                    </mat-form-field>
+                    
+                    <mat-form-field class="example-full-width">
+                        <textarea matInput name="description" [(ngModel)]="description" placeholder="Some list description" required></textarea>
+                    </mat-form-field>         
+                </div>
+            </main>
+            <footer>
+                <div>
+                    <button mat-raised-button [disabled]="createCollection.invalid" color="primary" (click)="onSubmit($event)">
+                        Create
+                    </button>
+                    <button mat-raised-button color="accent" (click)="closeEditor()">
+                        Cancel
+                    </button>
+                </div>
+            </footer>
+        </form> 
+    </div>
+</div>
+

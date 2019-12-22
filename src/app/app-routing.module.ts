@@ -1,12 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-// route components
-import { SearchContainerComponent } from './features/search/search-container/search-container.component';
-import { ItemContainerComponent } from './features/search/item/item-container.component';
-
 const routes: Routes = [
   { path: 'search', loadChildren: () => import(`./features/search/search.module`).then(m => m.SearchModule) },
+  { path: 'collections', loadChildren: () => import(`./features/collections/collections.module`).then(m => m.CollectionsModule) },
   { path: '', redirectTo: '/search', pathMatch: 'full' },
 ];
 

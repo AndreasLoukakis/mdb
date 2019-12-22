@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {
   MatToolbarModule, MatMenuModule, MatFormFieldModule, MatInputModule,
   MatButtonModule, MatIconModule, MatTableModule, MatPaginatorModule,
-  MatSnackBarModule, MatProgressSpinnerModule, MatSelectModule
+  MatSnackBarModule, MatProgressSpinnerModule, MatSelectModule, MatListModule
 } from '@angular/material';
 
 import { SearchAllowedCharsDirective } from './directives/search-allowed-chars.directive';
@@ -19,13 +19,13 @@ import { OverlayService } from './../services/overlay.service';
     FormsModule, HttpClientModule,
     MatToolbarModule, MatMenuModule, MatFormFieldModule, MatInputModule, MatButtonModule,
     MatIconModule, MatTableModule, MatPaginatorModule, MatSnackBarModule, MatProgressSpinnerModule,
-    MatSelectModule
+    MatSelectModule, MatListModule
   ],
   providers: [OverlayService],
   exports: [
     MatToolbarModule, MatMenuModule, MatFormFieldModule, MatInputModule, MatButtonModule,
     MatIconModule, MatTableModule, MatPaginatorModule, MatSnackBarModule, MatProgressSpinnerModule,
-    FormsModule, HttpClientModule, MatSelectModule
+    FormsModule, HttpClientModule, MatSelectModule, MatListModule
   ]
 })
 export class SharedModule { }

@@ -12,7 +12,7 @@ import { SearchModule } from './features/search/search.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
